@@ -3,7 +3,7 @@
 ## Build toolbox:
 
 ```
-cd /src/github.com/dzahariev/toolbox
+cd github.com/dzahariev/toolbox
 docker build -t toolbox .
 ```
 
