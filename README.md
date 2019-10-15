@@ -1,5 +1,9 @@
 # toolbox
+
+[![Docker Repository on Quay](https://quay.io/repository/dzahariev/toolbox/status "Docker Repository on Quay")](https://quay.io/repository/dzahariev/toolbox)
+
 Docker container with several tools that are needed in may daily work:
+
 
 - curl: https://curl.haxx.se
 - git: https://git-scm.com
