@@ -28,6 +28,12 @@ docker build -t toolbox .
 docker run -it --entrypoint /bin/bash toolbox
 ```
 
+or
+
+```
+docker run -it --entrypoint /bin/bash quay.io/dzahariev/toolbox:latest 
+
+```
 ## Start and attach:
 
 ```
