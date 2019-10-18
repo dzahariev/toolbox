@@ -5,6 +5,7 @@ ENV GIT_SSL_NO_VERIFY true
 RUN apt-get update && \
   apt-get install -y curl && \
   apt-get install -y git && \
+  apt-get install -y vim && \
   apt-get install -y ruby-full && \
   apt-get install -y build-essential
 
