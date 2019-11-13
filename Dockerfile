@@ -35,7 +35,7 @@ RUN curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get > get
   chmod +x get_helm.sh && \
   ./get_helm.sh
 
-ARG SMCTL_VERSION=v1.6.0
+ARG SMCTL_VERSION=v1.7.2
 # install smctl
 RUN curl -sL -o smctl https://github.com/Peripli/service-manager-cli/releases/download/$SMCTL_VERSION/smctl_linux_x86-64 && \
   chmod +x smctl && \
