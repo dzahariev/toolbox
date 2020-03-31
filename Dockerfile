@@ -6,6 +6,7 @@ RUN apt-get update && \
   apt-get install -y curl && \
   apt-get install -y git && \
   apt-get install -y vim && \
+  apt-get install -y postgresql-client && \
   apt-get install -y jq && \
   apt-get install -y ruby-full && \
   apt-get install -y build-essential
