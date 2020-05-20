@@ -5,7 +5,6 @@
 
 Docker container with several tools that are needed in may daily work:
 
-
 - curl: https://curl.haxx.se
 - git: https://git-scm.com
 - CF Command line tool: https://github.com/cloudfoundry/cli
@@ -14,6 +13,7 @@ Docker container with several tools that are needed in may daily work:
 - svcat: https://svc-cat.io/docs/install/#installing-the-service-catalog-cli
 - helm: https://helm.sh/docs/using_helm/#installing-helm
 - smctl: https://github.com/Peripli/service-manager-cli/releases
+- Oh My Zsh: https://github.com/ohmyzsh/ohmyzsh
 
 ## Build toolbox:
 
@@ -25,20 +25,14 @@ docker build -t toolbox .
 ## Start toolbox:
 
 ```
-docker run -it --entrypoint /bin/bash toolbox
+docker run -it toolbox
 ```
 
 or
 
 ```
-docker run -it --entrypoint /bin/bash quay.io/dzahariev/toolbox:latest 
+docker run -it quay.io/dzahariev/toolbox:latest 
 
-```
-## Start and attach:
-
-```
-docker start $(docker ps -a -f "ancestor=toolbox" --format "{{.ID}}")
-docker attach $(docker ps -a -f "ancestor=toolbox" --format "{{.ID}}")
 ```
 
 ## Remove toolbox containers:
