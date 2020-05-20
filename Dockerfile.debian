@@ -1,28 +1,30 @@
-FROM alpine:edge AS package_step
+FROM debian:stable-slim AS package_step
 
-RUN apk update && \
-  apk add zsh && \
-  apk add curl && \
-  apk add git && \
-  apk add vim && \
-  apk add postgresql-client && \
-  apk add jq && \
-  apk add build-base  && \
-  apk add ruby-dev 
+RUN apt-get update && \
+  apt-get install -y zsh && \
+  apt-get install -y curl && \
+  apt-get install -y git && \
+  apt-get install -y vim && \
+  apt-get install -y postgresql-client && \
+  apt-get install -y jq && \
+  apt-get install -y ruby-full && \
+  apt-get install -y build-essential && \
+  chsh -s $(which zsh) 
 
 # install uaac
 RUN gem install cf-uaac
 
 # install CF cli
-RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" | tar -zx && \
-  chmod +x ./cf && \
-  mv ./cf /usr/bin/
+RUN curl -s https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - && \
+  echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list && \
+  apt-get update && \
+  apt-get install -y cf-cli
 
-ARG KUBECTL_VERSION=v1.18.3
 # install kubectl
-RUN curl -sL -o kubectl https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
-  chmod +x ./kubectl && \
-  mv ./kubectl /usr/bin/
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+  echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+  apt-get update && \
+  apt-get install -y kubectl
 
 # install svcat
 RUN curl -sLO https://download.svcat.sh/cli/latest/linux/amd64/svcat && \
