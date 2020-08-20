@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dzahariev/toolbox.svg?branch=master)](https://travis-ci.org/dzahariev/toolbox)
 [![Docker Repository on Quay](https://quay.io/repository/dzahariev/toolbox/status "Docker Repository on Quay")](https://quay.io/repository/dzahariev/toolbox)
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/repository/docker/dzahariev/toolbox)
 
 Docker container with several tools that are needed in may daily work:
 
@@ -32,6 +33,13 @@ or
 
 ```
 docker run -it quay.io/dzahariev/toolbox:latest 
+
+```
+
+or
+
+```
+docker run -it dzahariev/toolbox:latest 
 
 ```
 
