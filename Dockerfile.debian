@@ -52,11 +52,5 @@ RUN curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
   sh install.sh && \
   rm install.sh
 
-# Check if everything is available
-RUN cf version && echo === && \
-  kubectl version --client && echo === && \
-  svcat version --client && echo === && \
-  smctl version && echo === 
-
 
 CMD ["zsh"]
