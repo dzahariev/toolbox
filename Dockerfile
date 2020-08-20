@@ -18,7 +18,7 @@ RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&sou
   chmod +x ./cf && \
   mv ./cf /usr/bin/
 
-ARG KUBECTL_VERSION=v1.18.3
+ARG KUBECTL_VERSION=v1.18.8
 # install kubectl
 RUN curl -sL -o kubectl https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
   chmod +x ./kubectl && \
@@ -49,12 +49,5 @@ RUN curl -sL -o smctl https://github.com/Peripli/service-manager-cli/releases/do
 RUN curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && \
   sh install.sh && \
   rm install.sh
-
-# Check if everything is available
-RUN cf version && echo === && \
-  kubectl version --client && echo === && \
-  svcat version --client && echo === && \
-  smctl version && echo === 
-
 
 CMD ["zsh"]
