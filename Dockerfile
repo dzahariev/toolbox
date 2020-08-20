@@ -54,7 +54,6 @@ RUN curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN cf version && echo === && \
   kubectl version --client && echo === && \
   svcat version --client && echo === && \
-  helm version --client && echo === && \
   smctl version && echo === 
 
 
