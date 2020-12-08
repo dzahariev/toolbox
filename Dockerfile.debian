@@ -18,7 +18,7 @@ RUN gem install cf-uaac
 RUN curl -s https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - && \
   echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list && \
   apt-get update && \
-  apt-get install -y cf-cli
+  apt-get install -y cf7-cli
 
 # install kubectl
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
@@ -31,17 +31,13 @@ RUN curl -sLO https://download.svcat.sh/cli/latest/linux/amd64/svcat && \
   chmod +x ./svcat && \
   mv ./svcat /usr/bin/
 
-ARG HELM_VERSION=v2.16.7
 # install helm
-RUN curl -sL -o helm-linux-amd64.tar.gz https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && \
-  tar -zxvf helm-linux-amd64.tar.gz && \
-  chmod +x ./linux-amd64/helm && \
-  mv linux-amd64/helm /usr/bin && \
-  mv linux-amd64/tiller /usr/bin && \
-  rm helm-linux-amd64.tar.gz && \
-  rm -fR linux-amd64
+RUN curl -s https://baltocdn.com/helm/signing.asc | apt-key add - && \
+  echo "deb https://baltocdn.com/helm/stable/debian/ all main" | tee -a /etc/apt/sources.list.d/helm-stable-debian.list && \
+  apt-get update && \
+  apt-get install -y apt-transport-https helm
 
-ARG SMCTL_VERSION=v1.10.6
+ARG SMCTL_VERSION=v1.11.2
 # install smctl
 RUN curl -sL -o smctl https://github.com/Peripli/service-manager-cli/releases/download/$SMCTL_VERSION/smctl_linux_x86-64 && \
   chmod +x smctl && \
@@ -51,6 +47,5 @@ RUN curl -sL -o smctl https://github.com/Peripli/service-manager-cli/releases/do
 RUN curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && \
   sh install.sh && \
   rm install.sh
-
 
 CMD ["zsh"]
