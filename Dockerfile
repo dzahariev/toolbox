@@ -1,4 +1,4 @@
-FROM alpine:edge AS package_step
+FROM alpine:3 AS package_step
 
 RUN apk update && \
   apk add zsh && \
