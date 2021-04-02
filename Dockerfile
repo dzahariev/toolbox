@@ -28,7 +28,7 @@ RUN curl -sLO https://download.svcat.sh/cli/latest/linux/amd64/svcat && \
   chmod +x ./svcat && \
   mv ./svcat /usr/bin/
 
-ARG HELM_VERSION=v3.4.1
+ARG HELM_VERSION=v3.5.3
 # install helm
 RUN curl -sL -o helm-linux-amd64.tar.gz https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && \
   tar -zxvf helm-linux-amd64.tar.gz && \
