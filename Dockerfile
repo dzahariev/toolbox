@@ -1,6 +1,7 @@
 FROM alpine:3 AS package_step
 
 RUN apk update && \
+  apk add bash && \
   apk add zsh && \
   apk add curl && \
   apk add git && \
@@ -13,9 +14,9 @@ RUN apk update && \
 # install uaac
 RUN gem install cf-uaac
 
-# install CF cli
-RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v7&source=github" | tar -zx && \
-  mv ./cf7 /usr/bin/ && \
+# install CF 8 cli
+RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v8&source=github" | tar -zx && \
+  mv ./cf8 /usr/bin/ && \
   mv ./cf /usr/bin/
 
 # install kubectl
@@ -28,7 +29,7 @@ RUN curl -sLO https://download.svcat.sh/cli/latest/linux/amd64/svcat && \
   chmod +x ./svcat && \
   mv ./svcat /usr/bin/
 
-ARG HELM_VERSION=v3.5.3
+ARG HELM_VERSION=v3.7.1
 # install helm
 RUN curl -sL -o helm-linux-amd64.tar.gz https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz && \
   tar -zxvf helm-linux-amd64.tar.gz && \
@@ -36,7 +37,7 @@ RUN curl -sL -o helm-linux-amd64.tar.gz https://get.helm.sh/helm-$HELM_VERSION-l
   mv linux-amd64/helm /usr/bin && \
   rm -fR linux-amd64
 
-ARG SMCTL_VERSION=v1.11.2
+ARG SMCTL_VERSION=v1.11.12
 # install smctl
 RUN curl -sL -o smctl https://github.com/Peripli/service-manager-cli/releases/download/$SMCTL_VERSION/smctl_linux_x86-64 && \
   chmod +x smctl && \
